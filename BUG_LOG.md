@@ -36,26 +36,24 @@ Log **every** bug as you fix it, one row per bug. There are **15**: 5 syntax, 4 
 | 3 | Ship.cs              | 6 | Syntax | missing a ; after string.Empty  | added ; |
 | 4 | ShipsController.cs   | 32 | Syntax | missing a ] after [HttpGet("{id}") | added bracket ] |
 | 5 | PilotsController.cs  | 9 | Syntax | misspelled PilotController | changed to PilotsController |
-| 6 | PilotService.cs      | 5 | Syntax | error is on Pilot Service line 9 list was not Pascal case  | corrected to List |
-| 7 | PilotsController.cs  | 18 | Logic| no call method to get result | added "getall" |
-| 8 | PilotService.cs      | 28  | Logic | (p => p.IsOnDuty == true) still returns false checks | removed == true |
-| 9 | ShipsController.cs   | 18 | Logic | no call method to get result | added "getall" |
-| 10 |ShipsController.cs   | 37 |Logic| if was != and should be == | changed to == |
-| 11 |ShipService.cs       | 21 | Runtime | first was used instead of first or default and threw 500 error | changed to firstordefault|
-| 12 |ShipsController.cs   | 45 |Logic | missing call method | added "Create"
-| 13 |ShipsController.cs   | 49 | Runtime | was returning 200 instead of 201 because there was no CreatedAtAction instruction | replaced Ok with CreatedAtAction(nameof(GetById), new { id = created.Id }, created);  |
-| 14 |ShipService.cs       | 54 | Logic| Refuel was setting fuel at +100 instead of to 100 | changed += to = |
-| 15 |ShipService.cs       | 62 | Runtime | show as 500 because missing the .ToList  | added .ToList |
-| 16 |PilotService.cs      | 55 | Logic | hours was overwriting with an = instead of adding hours with a +=| changed to +=
-|17  |PilotService.cs      | 50 | Runtime | no false return so returned 500 |  added false return so 404 showed up
+| 6 | IPilotService.cs      | 5 | Syntax | error is on Pilot Service line 9 list was not Pascal case  | corrected to List |
+| 7 | PilotService.cs      | 28  | Logic | (p => p.IsOnDuty == true) still returns false checks | removed == true |
+| 8 |ShipsController.cs   | 37 |Logic| if was != and should be == | changed to == |
+| 9 |ShipService.cs       | 21 | Runtime | first was used instead of first or default and threw 500 error | changed to firstordefault|
+| 10 |ShipsController.cs   | 49 | Logic | was returning 200 instead of 201 because there was no CreatedAtAction instruction | replaced Ok with CreatedAtAction(nameof(GetById), new { id = created.Id }, created);  |
+| 11 |ShipService.cs       | 54 | Logic| Refuel was setting fuel at +100 instead of to 100 | changed += to = |
+| 12 |ShipService.cs       | 62 | Runtime | show as 500 because missing the .ToList  | added .ToList |
+| 13 |PilotService.cs      | 55 | Logic | hours was overwriting with an = instead of adding hours with a +=| changed to +=
+| 14 |PilotService.cs      | 50 | Runtime | no false return so returned 500 |  added false return so 404 showed up
+| 15 |PilotsController.cs  | 62 | Logic | 0 was not returning a 400 because the if was only < | Changed to <= 0
 
 ## Tally
 
 | Kind | Found |
 |------|-------|
 | Syntax | _5__ / 5 |
-| Runtime | _5_ / 4 |
-| Logic | __7_ / 6 |
+| Runtime | _4_ / 4 |
+| Logic | __6_ / 6 |
 
 ## Reflection
 

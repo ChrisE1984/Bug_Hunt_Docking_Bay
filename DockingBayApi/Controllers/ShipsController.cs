@@ -15,7 +15,7 @@ public class ShipsController : ControllerBase
         _ships = ships;
     }
 
-    [HttpGet("GetAll")]
+    [HttpGet]
     public ActionResult<List<Ship>> GetAll()
     {
         List<Ship> ships = _ships.GetAll();

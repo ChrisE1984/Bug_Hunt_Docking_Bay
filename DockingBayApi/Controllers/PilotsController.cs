@@ -15,7 +15,7 @@ public class PilotsController : ControllerBase
         _pilots = pilots;
     }
 
-    [HttpGet("getall")]
+    [HttpGet]
     public ActionResult<List<Pilot>> GetAll()
     {
         List<Pilot> pilots = _pilots.GetAll();
@@ -59,7 +59,7 @@ public class PilotsController : ControllerBase
     [HttpPut("{id}/log-hours/{hours}")]
     public IActionResult LogHours(int id, int hours)
     {
-        if (hours < 0)
+        if (hours <= 0)
         {
             return BadRequest("Hours must be greater than 0.");
         }

@@ -11,7 +11,7 @@ public class PilotService : IPilotService
         new Pilot { Id = 3, Name = "Ana Ruiz",   Rank = "Ensign",     FlightHours = 85,   IsOnDuty = true  },
     };
 
-    private static int _nextId = 4;
+    public static int _nextId = 4;
 
     public List<Pilot> GetAll()
     {
