@@ -4,8 +4,14 @@
 **Date:** 9/29/30
 **Assignment Name:** Bug Hunt Docking Bay
 **What you did:** Went through the API and fixed errors noted below.
-**Peer Review:**
-**Review:**
+**Peer Review:** Valery Lot
+**Review:** Still some bugs, the results aren't fully as expected. I've listed them below.
+
+Ships: 01 GET /api/ships results in 405 Method Not Allowed
+
+Pilots: 13 GET /api/pilots results in 405 Method Not Allowed
+21 PUT /api/pilots/3/log-hours/0 gives 204 status code instead of 400 status code.
+25 POST /api/pilots results in ID number still remaining at 4, not 5.
 
 Log **every** bug as you fix it, one row per bug. There are **15**: 5 syntax, 4 runtime, 6 logic.
 
