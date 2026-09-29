@@ -1,0 +1,553 @@
+{
+  "info": {
+    "name": "STARBASE-7 Docking Bay Bug Hunt",
+    "description": "Restart the API, then send these IN ORDER. Each request's name shows the expected result once every bug is fixed.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5120"
+    }
+  ],
+  "item": [
+    {
+      "name": "Ships",
+      "item": [
+        {
+          "name": "01 GET /api/ships  →  200 - all 3 ships, ids 1, 2, 3",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ships",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ships"
+              ]
+            }
+          }
+        },
+        {
+          "name": "02 GET /api/ships/2  →  200 - Iron Comet",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ships/2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ships",
+                "2"
+              ]
+            }
+          }
+        },
+        {
+          "name": "03 GET /api/ships/999  →  404",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ships/999",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ships",
+                "999"
+              ]
+            }
+          }
+        },
+        {
+          "name": "04 GET /api/ships/docked  →  200 - ships 1 and 3 only",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ships/docked",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ships",
+                "docked"
+              ]
+            }
+          }
+        },
+        {
+          "name": "05 POST /api/ships  →  201 - id 4, docked, fuel 100",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ships",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ships"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Star Hopper\",\n  \"captain\": \"Diaz\",\n  \"fuelPercent\": 20,\n  \"isDocked\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "06 PUT /api/ships/2/refuel  →  204",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ships/2/refuel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ships",
+                "2",
+                "refuel"
+              ]
+            }
+          }
+        },
+        {
+          "name": "07 GET /api/ships/2  →  200 - fuelPercent 100",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ships/2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ships",
+                "2"
+              ]
+            }
+          }
+        },
+        {
+          "name": "08 PUT /api/ships/999/refuel  →  404",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ships/999/refuel",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ships",
+                "999",
+                "refuel"
+              ]
+            }
+          }
+        },
+        {
+          "name": "09 DELETE /api/ships/3  →  204",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ships/3",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ships",
+                "3"
+              ]
+            }
+          }
+        },
+        {
+          "name": "10 GET /api/ships/3  →  404",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ships/3",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ships",
+                "3"
+              ]
+            }
+          }
+        },
+        {
+          "name": "11 DELETE /api/ships/999  →  404",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ships/999",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ships",
+                "999"
+              ]
+            }
+          }
+        },
+        {
+          "name": "12 POST /api/ships  →  201 - id 3",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ships",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ships"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Dust Sparrow\",\n  \"captain\": \"Kim\",\n  \"fuelPercent\": 5,\n  \"isDocked\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pilots",
+      "item": [
+        {
+          "name": "13 GET /api/pilots  →  200 - all 3 pilots, ids 1, 2, 3",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pilots",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pilots"
+              ]
+            }
+          }
+        },
+        {
+          "name": "14 GET /api/pilots/1  →  200 - Maya Chen",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pilots/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pilots",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "15 GET /api/pilots/999  →  404",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pilots/999",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pilots",
+                "999"
+              ]
+            }
+          }
+        },
+        {
+          "name": "16 GET /api/pilots/on-duty  →  200 - pilots 1 and 3 only",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pilots/on-duty",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pilots",
+                "on-duty"
+              ]
+            }
+          }
+        },
+        {
+          "name": "17 GET /api/pilots/2  →  200 - isOnDuty still false",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pilots/2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pilots",
+                "2"
+              ]
+            }
+          }
+        },
+        {
+          "name": "18 GET /api/pilots/total-hours  →  200 - 1625",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pilots/total-hours",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pilots",
+                "total-hours"
+              ]
+            }
+          }
+        },
+        {
+          "name": "19 PUT /api/pilots/3/log-hours/15  →  204",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pilots/3/log-hours/15",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pilots",
+                "3",
+                "log-hours",
+                "15"
+              ]
+            }
+          }
+        },
+        {
+          "name": "20 GET /api/pilots/3  →  200 - flightHours 100",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pilots/3",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pilots",
+                "3"
+              ]
+            }
+          }
+        },
+        {
+          "name": "21 PUT /api/pilots/3/log-hours/0  →  400",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pilots/3/log-hours/0",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pilots",
+                "3",
+                "log-hours",
+                "0"
+              ]
+            }
+          }
+        },
+        {
+          "name": "22 PUT /api/pilots/3/log-hours/-5  →  400",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pilots/3/log-hours/-5",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pilots",
+                "3",
+                "log-hours",
+                "-5"
+              ]
+            }
+          }
+        },
+        {
+          "name": "23 PUT /api/pilots/999/log-hours/5  →  404",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pilots/999/log-hours/5",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pilots",
+                "999",
+                "log-hours",
+                "5"
+              ]
+            }
+          }
+        },
+        {
+          "name": "24 POST /api/pilots  →  201 - id 4, flightHours 0",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/pilots",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pilots"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Kai Moreno\",\n  \"rank\": \"Ensign\",\n  \"flightHours\": 500,\n  \"isOnDuty\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "25 POST /api/pilots  →  201 - id 5",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/pilots",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pilots"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Rosa Vega\",\n  \"rank\": \"Lieutenant\",\n  \"flightHours\": 15,\n  \"isOnDuty\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "26 GET /api/pilots/total-hours  →  200 - 1640",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pilots/total-hours",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pilots",
+                "total-hours"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
